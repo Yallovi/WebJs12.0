@@ -39,11 +39,15 @@ console.log(addExpenses.toLowerCase().split(' ,'));
 
 let getExpensesMonth = function(){
 
-    let sum = 0;   
+    let sum = 0, check = 0;   
 
     for (let i = 0; i < 2; i++){
         expenses[i] = prompt('Введите обязательную статью расходов?');
-        sum += +prompt('Во сколько это обойдется?');
+        do {
+            check = prompt('Во сколько это обойдется?');
+        }
+        while (!isNumber(check));
+        sum += check;
     }
     console.log(expenses);
     return sum;

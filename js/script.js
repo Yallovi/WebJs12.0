@@ -4,7 +4,7 @@ let isNumber = function(n) {
     };
 let isString = function(n){
     return !isNumber(n) && n !== '' && n !== null;
-}
+};
 
 let money,
     start = function (){
@@ -33,10 +33,10 @@ let appData = {
         if(confirm('Есть ли у вас дополнительый источник заработка?')){
             do{
           itemIncome = prompt('Ваш дополнительный заработок?', 'Таксую');
-            } while(!isString(itemIncome))
+            } while(!isString(itemIncome));
           do{
           cashIncome = prompt('Сколько в месяц вы на это зарабатываете?',10000);
-          } while(!isNumber(itemIncome))
+          } while(!isNumber(itemIncome));
           appData.income[itemIncome] = cashIncome;
         }
 

@@ -8,10 +8,10 @@ let additionalIncomeValue = document.querySelectorAll('.additional_income-item')
 let budgetDayValue = document.getElementsByClassName('budget_day-value')[0];
 let budgetMonthValue = document.getElementsByClassName('budget_month-value')[0];
 let expensesMonthValue = document.getElementsByClassName('expenses_month-value')[0];
-// let additionalIncome = document.getElementsByClassName('result-total additional_income-value');
-let additionalExpensesyValue = document.getElementsByClassName('additional_expenses-value');
-let incomePeriodValue = document.getElementsByClassName('income_period-value');
-let targetMonthValue = document.getElementsByClassName('target_month-value');
+let additionalIncome = document.getElementsByClassName('additional_income-value')[0];
+let additionalExpensesyValue = document.getElementsByClassName('additional_expenses-value')[0];
+let incomePeriodValue = document.getElementsByClassName('income_period-value')[0];
+let targetMonthValue = document.getElementsByClassName('target_month-value')[0];
 let salaryAmount = document.querySelector('.salary-amount');
 let incomeTitle = document.querySelector('.income-title');
 let additionalIncomeItem = document.querySelectorAll('.additional_income-item');
@@ -23,26 +23,27 @@ let targetAmount = document.querySelector('.target-amount');
 let periodSelect = document.querySelector('.period-select');
 let incomeItems = document.querySelectorAll('.income-items');
 
-let isNumber = function(n) {
-    return !isNaN(parseFloat(n)) && isFinite(n);
-    };
-let isString = function(n){
-    return !isNumber(n) && n !== '' && n !== null;
-};
+// let isNumber = function(n) {
+//     return !isNaN(parseFloat(n)) && isFinite(n);
+//     };
+// let isString = function(n){
+//     return !isNumber(n) && n !== '' && n !== null;
+// };
 
 let appData = {
+    budget: 0,
+    budgetDay: 0,
+    budgetMonth: 0,
     income: {},
     incomeMonth: 0,
     addIncome: [],
     expenses: {},
+    expensesMonth: 0,
     addExpenses: [],
     deposit: false,
     percentDeposit: 0,
     moneyDeposit: 0,
     period: 3,
-    budget: 0,
-    budgetDay: 0,
-    budgetMonth: 0,
 
     start: function (){
         if(salaryAmount.value === ''){
@@ -51,13 +52,12 @@ let appData = {
         }
 
     appData.budget = +salaryAmount.value;
-    console.log('salaryAmount.value: ', salaryAmount.value);
 
     appData.getExpenses();
     appData.getIncome();
     appData.getExpensesMonth();
     appData.getAddExpenses();
-    appData.getAddIncome();   
+    appData.getAddIncome(); 
     appData.getBudget();
     
     appData.showResult();
@@ -96,7 +96,7 @@ let appData = {
             let cashIncome = prompt('Сколько в месяц вы зарабатываете?', 10000);
             appData.income[itemIncome] = cashIncome;
         }
-        for(let key in appData.Income){
+        for(let key in appData.income){
             appData.incomeMonth += +appData.income[key];
         }
     },
@@ -165,5 +165,4 @@ if (appData.getTargetMonth () > 0){
     console.log('Цель будет достигнута за ' + appData.getTargetMonth() + ' месяцев');
 }   else {
     console.log('Цель не будет достигнута');
-}
-console.log(appData.getStatusIncome());
+} 

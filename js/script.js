@@ -207,18 +207,19 @@ AppData.prototype.calcSavedMoney =function(){
    return this.budgetMonth * periodSelect.value;
 };
 
-
+AppData.prototype.addEventListener = function(){
+    start.addEventListener('click', this.start);
+    cancel.addEventListener('click', this.reset);
+    butnPlusExpenses.addEventListener('click',this.addExpensensbLock);
+    butnPlusIncome.addEventListener('click',this.addIncomeBlock);
+    periodSelect.addEventListener('change', this.periodSelectBlock);
+};
 const appData = new AppData();
 
+_this.addEventListener();
 console.log(appData);
 
 
-
-start.addEventListener('click', appData.start);
-cancel.addEventListener('click', appData.reset);
-butnPlusExpenses.addEventListener('click',appData.addExpensensbLock);
-butnPlusIncome.addEventListener('click',appData.addIncomeBlock);
-periodSelect.addEventListener('change', appData.periodSelectBlock);
 
 
 // if (appData.getTargetMonth () > 0){

@@ -339,31 +339,14 @@ calc();
         statusMessage.textContent = 'Тут будет сообщение!';
         statusMessage.style.cssText = 'font-size: 2rem; color: white;';
 
-        const postData = body => new Promise((resolve, reject) => {
-
-            const request = new XMLHttpRequest();
-            request.addEventListener('readystatechange', () => {
-                console.log(request.readyState);
-                if (request.readyState !== 4) {
-                    return;
-                }
-
-                if (request.status === 200) {
-                    resolve();
-                } else {
-                    reject(request.status);
-                }
-                    
-                    
+        const postData = (body) => fetch('./server.php',{
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(body)
             });
-
-            request.open('POST', './server.php');
-            request.setRequestHeader('Content-Type', 'application/json');
-                
-
-            request.send(JSON.stringify(body));
-
-        });
+        
 
         [...forms].forEach(form => {
 
@@ -381,10 +364,15 @@ calc();
                 });
 
                 postData(body)
-                    .then(() => statusMessage.textContent = successMessage)
-                    .catch(error => {
-                        console.log(error);
+                    .then((response) => {
+                        if(response.status !==200){
+                            throw new Error('status network not 200');
+                        }
+                        statusMessage.textContent = successMessage;
+                    })
+                    .catch((error) => {
                         statusMessage.textContent = errorMessage;
+                        console.error(error);
                     });
 
                 [...form.elements].forEach(elem => {

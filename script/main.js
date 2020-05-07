@@ -339,12 +339,12 @@ calc();
         statusMessage.textContent = 'Тут будет сообщение!';
         statusMessage.style.cssText = 'font-size: 2rem; color: white;';
 
-        const postData = (body) => fetch('./server.php',{
+        const postData = (formData) => fetch('./server.php',{
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(body)
+                body: formData
             });
         
 
@@ -357,13 +357,13 @@ calc();
                 statusMessage.textContent = loadMessage;
                 
                 const formData = new FormData(form);
-                let body = {};
+                // let body = {};
 
-                formData.forEach((val, key) => {
-                    body[key] = val;
-                });
+                // formData.forEach((val, key) => {
+                //     body[key] = val;
+                // });
 
-                postData(body)
+                postData(formData)
                     .then((response) => {
                         if(response.status !==200){
                             throw new Error('status network not 200');

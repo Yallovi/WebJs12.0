@@ -41,7 +41,6 @@ const popupCall = () => {
     //check-btn
     const checkBtn = document.querySelector('.check-btn'),
     popupCheck = document.querySelector('.popup-check');
-        console.log(popupCheck);
         checkBtn.addEventListener('click', () => {
             popupCheck.style.display = 'block';
     });
@@ -57,6 +56,36 @@ const popupCall = () => {
         }
     });
 
+    //consultation-btn
+    const consultationBtn = document.querySelector('.consultation-btn'),
+    popupConsultation = document.querySelector('.popup-consultation'),
+    directorForm = document.querySelector('.director-form'),
+    consultationInput = directorForm.user_quest;
+    consultationBtn.disabled = true;
+    
+    consultationInput.addEventListener('input', () =>{
+        if(consultationInput.value !== ''){
+            consultationBtn.disabled = false;
+        } else {
+            consultationBtn.disabled = true;
+        }
+    });
+    consultationBtn.addEventListener('click', () => {
+        event.preventDefault();
+        popupConsultation.style.display = 'block';
+    });
+       
+    popupConsultation.addEventListener('click', event => {
+        let target = event.target;
+        if (target.classList.contains('popup-close')) {
+            popupConsultation.style.display = 'none';
+        } else {
+            target = target.closest('.popup-content');
+            if (!target) {
+                popupConsultation.style.display = 'none';
+            }
+        }
+    });
 
 };
 export default popupCall;

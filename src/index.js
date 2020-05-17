@@ -6,7 +6,7 @@ import moreTab from './modules/moreTab';
 import validationForm from './modules/validationForm';
 import accardionTwo from './modules/accardionTwo';
 import accardion from './modules/accardion';
-
+import calc from './modules/calc';
 
 popupCall();
 sendForm();
@@ -14,7 +14,7 @@ moreTab();
 validationForm();
 accardionTwo();
 accardion();
-
+calc();
 
 
 

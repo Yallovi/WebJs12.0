@@ -35,4 +35,5 @@ const accardion = () => {
 
     
 };
+
 export default accardion;
